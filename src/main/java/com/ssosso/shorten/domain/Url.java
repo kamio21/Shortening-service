@@ -15,8 +15,8 @@ public class Url {
 	private String originUrl;
 	
 	
-	public Url() {
-	
+	public Url(String originUrl) {
+		this.originUrl = originUrl;
 	}
 	
 	public Url(long id, String originUrl) {
