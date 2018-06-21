@@ -14,6 +14,9 @@ public class Url {
 	@Column(unique = true)
 	private String originUrl;
 	
+	public Url() {
+	
+	}
 	
 	public Url(String originUrl) {
 		this.originUrl = originUrl;

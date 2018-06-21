@@ -21,7 +21,7 @@ public class UrlController {
 	@PostMapping("/")
 	public String shorten(String originUrl, Model model) {
 		model.addAttribute("originUrl", originUrl);
-		model.addAttribute("shortUrl", urlService.generateShortenUrl(originUrl));
+		model.addAttribute("shortUrl", urlService.generateShortUrl(originUrl));
 		return "index";
 	}
 }

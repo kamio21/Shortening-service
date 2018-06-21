@@ -15,13 +15,13 @@ public class UrlService {
 	private UrlRepository urlRepository;
 	
 	@Transactional
-	public String generateShortenUrl(String originUrl) {
+	public Url generateShortUrl(String originUrl) {
 		Optional<Url> saveUrl = findUrlByOriginUrl(originUrl);
 		if(saveUrl.isPresent()) {
-			return saveUrl.get().shorten();
+			return saveUrl.get();
 		}
 		
-		return urlRepository.save(new Url(originUrl)).shorten();
+		return urlRepository.save(new Url(originUrl));
 	}
 	
 	public Optional<Url> findUrlByOriginUrl(String originUrl) {
