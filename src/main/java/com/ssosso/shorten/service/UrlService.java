@@ -2,16 +2,16 @@ package com.ssosso.shorten.service;
 
 import com.ssosso.shorten.domain.Url;
 import com.ssosso.shorten.repository.UrlRepository;
+import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import javax.annotation.Resource;
 import java.util.Optional;
 
-@Service("urlService")
+@AllArgsConstructor
+@Service
 public class UrlService {
 	
-	@Resource(name = "urlRepository")
 	private UrlRepository urlRepository;
 	
 	@Transactional
@@ -25,6 +25,6 @@ public class UrlService {
 	}
 	
 	public Optional<Url> findUrlByOriginUrl(String originUrl) {
-		return Optional.of(urlRepository.findUrlByOriginUrl(originUrl));
+		return urlRepository.findUrlByOriginUrl(originUrl);
 	}
 }

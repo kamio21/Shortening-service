@@ -2,7 +2,6 @@ package com.ssosso.shorten.web;
 
 import com.ssosso.shorten.domain.Url;
 import com.ssosso.shorten.repository.UrlRepository;
-import com.ssosso.shorten.service.UrlService;
 import com.ssosso.support.test.AcceptanceTest;
 import com.ssosso.support.utils.HtmlFormDataBuilder;
 import org.junit.Before;
@@ -10,6 +9,8 @@ import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+
+import java.util.stream.IntStream;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
@@ -23,9 +24,8 @@ public class UrlAcceptanceTest extends AcceptanceTest {
 	
 	@Before
 	public void setUp() throws Exception {
-		for(int i=0; i<1000; i++) {
-			urlRepository.save(new Url(DEFAULT_ORIGIN_URL + i));
-		}
+		IntStream.range(0, 100)
+				.forEach(i -> urlRepository.save(new Url(DEFAULT_ORIGIN_URL + i)));
 		defaultUrl = urlRepository.save(new Url(DEFAULT_ORIGIN_URL));
 	}
 	
@@ -36,7 +36,7 @@ public class UrlAcceptanceTest extends AcceptanceTest {
 					.addParameter("originUrl", DEFAULT_ORIGIN_URL)
 					.build(),
 				String.class);
-		assertEquals(response.getStatusCode(), HttpStatus.FOUND);
+		assertEquals(HttpStatus.OK, response.getStatusCode());
 		assertTrue(response.getBody().contains(defaultUrl.shorten()));
 	}
 }

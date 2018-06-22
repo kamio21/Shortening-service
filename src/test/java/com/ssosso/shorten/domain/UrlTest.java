@@ -9,6 +9,6 @@ public class UrlTest {
 	public void shorten테스트() {
 		Url url = new Url(1_042_432_728L, "https://ssossohow.tistory.com");
 		
-		assertEquals(url.shorten(), "iH6xg");
+		assertEquals("iH6xg", url.shorten());
 	}
 }
