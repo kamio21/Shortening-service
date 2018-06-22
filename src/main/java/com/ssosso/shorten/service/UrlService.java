@@ -2,6 +2,7 @@ package com.ssosso.shorten.service;
 
 import com.ssosso.shorten.domain.Url;
 import com.ssosso.shorten.repository.UrlRepository;
+import com.ssosso.shorten.utils.Base62Util;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -25,6 +26,10 @@ public class UrlService {
 	}
 	
 	public Optional<Url> findUrlByOriginUrl(String originUrl) {
-		return urlRepository.findUrlByOriginUrl(originUrl);
+		return urlRepository.findByOriginUrl(originUrl);
+	}
+	
+	public Optional<Url> findUrlByShortenValue(String shortenValue) {
+		return urlRepository.findById(Base62Util.fromBase62(shortenValue));
 	}
 }

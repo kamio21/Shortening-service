@@ -2,12 +2,14 @@ package com.ssosso.shorten.domain;
 
 import com.ssosso.shorten.utils.Base62Util;
 import lombok.AllArgsConstructor;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
 @NoArgsConstructor
 @AllArgsConstructor
+@Getter
 @Entity
 public class Url {
 	static final private String SITE_HOST = "sso.so";
@@ -24,7 +26,11 @@ public class Url {
 	}
 	
 	public String shorten() {
-		return SITE_HOST + "/" + Base62Util.toBase62(id);
+		return SITE_HOST + "/" + getShortenValue();
+	}
+	
+	public String getShortenValue() {
+		return Base62Util.toBase62(id);
 	}
 	
 	@Override

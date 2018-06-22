@@ -11,4 +11,11 @@ public class UrlTest {
 		
 		assertEquals("sso.so/biH6xg", url.shorten());
 	}
+	
+	@Test
+	public void getShortenValue테스트() {
+		Url url = new Url(1_042_432_728L, "https://ssossohow.tistory.com");
+		
+		assertEquals("biH6xg", url.getShortenValue());
+	}
 }
