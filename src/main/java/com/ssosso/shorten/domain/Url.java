@@ -7,10 +7,10 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
-@NoArgsConstructor
-@AllArgsConstructor
 @Getter
 @Entity
+@NoArgsConstructor
+@AllArgsConstructor
 public class Url {
 	static final private String SITE_HOST = "sso.so";
 	

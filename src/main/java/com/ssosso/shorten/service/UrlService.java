@@ -9,8 +9,8 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Optional;
 
-@AllArgsConstructor
 @Service
+@AllArgsConstructor
 public class UrlService {
 	
 	private UrlRepository urlRepository;
@@ -18,14 +18,10 @@ public class UrlService {
 	@Transactional
 	public Url generateShortUrl(String originUrl) {
 		Optional<Url> saveUrl = findUrlByOriginUrl(originUrl);
-		if(saveUrl.isPresent()) {
-			return saveUrl.get();
-		}
-		
-		return urlRepository.save(new Url(originUrl));
+		return saveUrl.orElseGet(() -> urlRepository.save(new Url(originUrl)));
 	}
 	
-	public Optional<Url> findUrlByOriginUrl(String originUrl) {
+	private Optional<Url> findUrlByOriginUrl(String originUrl) {
 		return urlRepository.findByOriginUrl(originUrl);
 	}
 	

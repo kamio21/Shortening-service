@@ -19,6 +19,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 public class UrlAcceptanceTest extends AcceptanceTest {
+	
 	@Autowired
 	private UrlRepository urlRepository;
 	
@@ -26,7 +27,7 @@ public class UrlAcceptanceTest extends AcceptanceTest {
 	static private Url defaultUrl;
 	
 	@Before
-	public void setUp() throws Exception {
+	public void setUp() {
 		IntStream.range(0, 100)
 				.forEach(i -> urlRepository.save(new Url(DEFAULT_ORIGIN_URL + i)));
 		defaultUrl = urlRepository.save(new Url(DEFAULT_ORIGIN_URL));
