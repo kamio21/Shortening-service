@@ -5,13 +5,11 @@ import com.ssosso.shorten.repository.UrlRepository;
 import com.ssosso.shorten.utils.Base62Util;
 import com.ssosso.support.test.AcceptanceTest;
 import com.ssosso.support.utils.HtmlFormDataBuilder;
-import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.test.context.transaction.AfterTransaction;
 
 import java.util.stream.IntStream;
 
@@ -19,12 +17,11 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 public class UrlAcceptanceTest extends AcceptanceTest {
-	
+	private static final String DEFAULT_ORIGIN_URL = "https://ssossohow.tistory.com";
+	private static Url defaultUrl;
+
 	@Autowired
 	private UrlRepository urlRepository;
-	
-	static final private String DEFAULT_ORIGIN_URL = "https://ssossohow.tistory.com";
-	static private Url defaultUrl;
 	
 	@Before
 	public void setUp() {

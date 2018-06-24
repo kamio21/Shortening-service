@@ -14,23 +14,17 @@ import org.springframework.web.bind.annotation.RequestParam;
 import javax.servlet.http.HttpServletResponse;
 import java.util.Optional;
 
-@AllArgsConstructor
 @Controller
+@AllArgsConstructor
 public class UrlController {
+
 	private UrlService urlService;
 	
 	@GetMapping("/")
 	public String index() {
 		return "index";
 	}
-	
-	@PostMapping("/")
-	public String shorten(@RequestParam String originUrl, Model model) {
-		model.addAttribute("originUrl", originUrl);
-		model.addAttribute("shortUrl", urlService.generateShortUrl(originUrl).shorten());
-		return "index";
-	}
-	
+
 	@GetMapping("/{id}")
 	public String redirect(HttpServletResponse response, @PathVariable String id) {
 		Optional<Url> url = urlService.findUrlByShortenValue(id);
@@ -40,5 +34,12 @@ public class UrlController {
 		
 		response.setStatus(HttpStatus.NOT_FOUND.value());
 		return "error/wrong_shorten";
+	}
+
+	@PostMapping("/")
+	public String shorten(@RequestParam String originUrl, Model model) {
+		model.addAttribute("originUrl", originUrl);
+		model.addAttribute("shortUrl", urlService.generateShortUrl(originUrl).shorten());
+		return "index";
 	}
 }
