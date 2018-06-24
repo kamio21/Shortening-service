@@ -1,2 +1,14 @@
-# Shortening-service
-URL을 입력받아 짧게 줄여주고, Shortening된 URL을 입력하면 원래 URL로 리다이렉트하는 서비스
+# 소개
+URL을 입력하면 짧게 줄여주고, 줄여진 URL 접근하면 원래 URL로 리다이렉트하는 서비스
+
+# 문제해결 전략
+- URL을 입력하면 DB에 1씩 증가는 숫자를 아이디로 가지는 url을 저장
+- 아이디(10진수)를 62진법을 활용하여 영문소문자/대문자, 숫자0-9로 이루어진 short URL로 줄여 제공 (218,340,105,584,896 번째 URL까지 8자리 이내 고유한 줄임값을 제공할 수 있음)
+- URL을 입력했을 때 DB에 이미 있는 URL이면 해당 URL 정보를 가져와 아이디 값을 얻고, 아이디 값을 62진법으로 계산하여 제공 (DB URL은 unique 키가 걸려 있음)
+
+# 실행 방법 명시
+```
+Srping Boot Run -> localhost:80 -> URL 입력
+```
+
+- DB조회: http://localhost/h2-console
