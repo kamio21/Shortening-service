@@ -13,5 +13,7 @@ URL을 입력하면 짧게 줄여주고, 줄여진 URL 접근하면 원래 URL�
 	- Windows : C:\Windows\System32\drivers\etc\hosts
 - 첫페이지 이동 
 	- sso.so 주소창에 입력
+- 줄일 URL 입력
+	<br/><img src="screenshot1.png"/>
 - DB조회
 	- http://localhost/h2-console

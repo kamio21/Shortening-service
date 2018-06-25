@@ -7,13 +7,12 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
-import static com.ssosso.shorten.utils.UrlUtil.SITE_HOST;
-
 @Getter
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
 public class Url {
+	public static final String SITE_HOST = "sso.so";
 	
 	@Id
 	@GeneratedValue

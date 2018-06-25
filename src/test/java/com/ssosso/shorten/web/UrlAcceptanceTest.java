@@ -5,6 +5,7 @@ import com.ssosso.shorten.repository.UrlRepository;
 import com.ssosso.shorten.utils.Base62Util;
 import com.ssosso.support.test.AcceptanceTest;
 import com.ssosso.support.utils.HtmlFormDataBuilder;
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -51,12 +52,17 @@ public class UrlAcceptanceTest extends AcceptanceTest {
 	@Test
 	public void 등록하지않은_shortUrl접속하면_에러페이지이동하는가() {
 		long maxId = urlRepository.findAll().stream()
-				.mapToLong(url -> url.getId())
+				.mapToLong(Url::getId)
 				.max()
 				.orElse(0);
 		
 		ResponseEntity<String> response = template().getForEntity("/" + Base62Util.toBase62(maxId + 100), String.class);
 		assertEquals(HttpStatus.NOT_FOUND, response.getStatusCode());
 		assertTrue(response.getBody().contains("등록되지 않은 URL입니다"));
+	}
+	
+	@After
+	public void tearDown() {
+		urlRepository.deleteAll();
 	}
 }
