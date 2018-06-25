@@ -7,8 +7,11 @@ URL을 입력하면 짧게 줄여주고, 줄여진 URL 접근하면 원래 URL�
 - URL을 입력했을 때 DB에 이미 있는 URL이면 해당 URL 정보를 가져와 아이디 값을 얻고, 아이디 값을 62진법으로 계산하여 제공 (DB URL은 unique 키가 걸려 있음)
 
 # 실행 방법 명시
-```
-Srping Boot Run -> localhost:80 -> URL 입력
-```
-
-- DB조회: http://localhost/h2-console
+- 어플리케이션 실행 ```Srping Boot Run```
+- host 파일에 ```127.0.0.1 sso.so``` 설정
+	- MAC : \etc\hosts
+	- Windows : C:\Windows\System32\drivers\etc\hosts
+- 첫페이지 이동 
+	- sso.so 주소창에 입력
+- DB조회
+	- http://localhost/h2-console
