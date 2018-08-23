@@ -1,6 +1,6 @@
 package com.ssosso.shorten.domain;
 
-import com.ssosso.shorten.utils.Base62Util;
+import com.ssosso.shorten.utils.Base61Util;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -30,7 +30,7 @@ public class Url {
 	}
 	
 	public String getShortenValue() {
-		return Base62Util.toBase62(id);
+		return Base61Util.toBase61(id);
 	}
 	
 	@Override

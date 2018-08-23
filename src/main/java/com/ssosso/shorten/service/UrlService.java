@@ -2,7 +2,7 @@ package com.ssosso.shorten.service;
 
 import com.ssosso.shorten.domain.Url;
 import com.ssosso.shorten.repository.UrlRepository;
-import com.ssosso.shorten.utils.Base62Util;
+import com.ssosso.shorten.utils.Base61Util;
 import com.ssosso.shorten.valid.UrlTypeValidation;
 import com.ssosso.shorten.valid.Validation;
 import lombok.AllArgsConstructor;
@@ -48,6 +48,6 @@ public class UrlService {
 	 * @return
 	 */
 	public Optional<Url> findUrlByShortenValue(String shortenValue) {
-		return urlRepository.findById(Base62Util.fromBase62(shortenValue));
+		return urlRepository.findById(Base61Util.fromBase61(shortenValue));
 	}
 }
